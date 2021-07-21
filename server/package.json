@@ -1,0 +1,44 @@
+{
+  "name": "rotoscope-server",
+  "version": "1.0.0",
+  "description": "Socket server to handle the rotoscope connection.",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "run-s build:clean type webpack",
+    "build:clean": "rimraf ./dist",
+    "type": "tsc --noEmit",
+    "webpack": "webpack",
+    "serve": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeckFreak/simple-rotoscope.git"
+  },
+  "keywords": [
+    "rotoscope",
+    "typescript",
+    "html"
+  ],
+  "author": "Rahul Vashishtha (@TeckFreak)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeckFreak/simple-rotoscope/issues"
+  },
+  "homepage": "https://github.com/TeckFreak/simple-rotoscope#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-typescript": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@types/node": "^16.4.0",
+    "fastify": "^3.19.1",
+    "socket.io": "^4.1.3"
+  }
+}
