@@ -1,0 +1,17 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.main-image {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
