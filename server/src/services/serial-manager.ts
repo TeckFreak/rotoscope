@@ -42,6 +42,6 @@ export class SerialManager {
     private onParserDataReceived(data: any) {
         console.log(data);
 
-        this.socket.sendData(data as ISocketData);
+        this.socket.sendData({ distance: data } as ISocketData);
     }
 }

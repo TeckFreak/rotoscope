@@ -21,5 +21,6 @@ export const appConfig = {
             position: { x: 0, y: 0 },
             image: ""
         },
-    ]
+    ],
+    totalCM: 200
 }
