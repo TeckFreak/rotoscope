@@ -4,11 +4,11 @@
   "description": "Frontend browser application for rotoscope.",
   "main": "./src/index.ts",
   "scripts": {
-    "build": "run-s build:clean type webpack",
+    "build": "run-s build:clean type ncc",
     "build:clean": "rimraf ./dist",
     "type": "tsc --noEmit",
-    "webpack": "webpack",
-    "serve": "webpack serve"
+    "ncc": "ncc build ./src/index.ts",
+    "serve": "hs ./dist"
   },
   "repository": {
     "type": "git",
@@ -26,16 +26,13 @@
   },
   "homepage": "https://github.com/TeckFreak/simple-rotoscope#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.8",
-    "@babel/preset-typescript": "^7.14.5",
-    "babel-loader": "^8.2.2",
-    "copy-webpack-plugin": "^9.0.1",
-    "html-webpack-plugin": "^5.3.2",
+    "@vercel/ncc": "^0.29.0",
+    "http-server": "^0.12.3",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "webpack": "^5.45.1",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "socket.io-client": "^4.1.3"
   }
 }
