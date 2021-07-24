@@ -1,6 +1,8 @@
 import { appConfig } from "./config";
-import { Socket, io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { ISocketData } from "./ISocketData";
+
+let lastDistance = 0;
 
 const socket = io("localhost:3000");
 socket.on('connect', () => {
@@ -8,7 +10,9 @@ socket.on('connect', () => {
 });
 
 socket.on('DISTANCE_UPDATE', (data: ISocketData) => {
-    moveBody(data.distance);
+    if(data.distance > lastDistance + 2 || data.distance < lastDistance - 2){
+        moveBody(data.distance);
+    }
 });
 
 const image = document.createElement('img') as HTMLImageElement;
@@ -19,46 +23,16 @@ document.body.appendChild(image);
 
 let i = 0;
 
-// const timer = setInterval(() => {
-//     console.log(image.width, window.innerWidth)
-//     if (i <= image.width - window.innerWidth) {
-//         image.style.transform = `translateX(${-i}px)`;
-//         i++;
-//     }
-//     else {
-//         clearInterval(timer);
-//     }
-// }, 1);
-
 function moveBody(distance: number) {
-    const moveTo = distance * getPixelsPerCentimeter();
+    const moveTo = ((image.width - window.innerWidth) - distance * getPixelsPerCentimeter());
 
-    if(-moveTo < image.x) {
-        i = image.x;
-        const timer = setInterval(() => {
-            if (i > -moveTo) {
-                image.style.transform = `translateX(${-i}px)`;
-                i -= getPixelsPerCentimeter();
-            }
-            else {
-                clearInterval(timer);
-            }
-        }, 1);
-    }
-    else {
-        i = image.x;
-        const timer = setInterval(() => {
-            if (i <= -moveTo) {
-                image.style.transform = `translateX(${-i}px)`;
-                i += getPixelsPerCentimeter();
-            }
-            else {
-                clearInterval(timer);
-            }
-        }, 1);
+    i = image.x;
+    while(i > -moveTo) {
+        image.style.transform = `translateX(${i}px)`;
+        i--;
     }
 }
 
 function getPixelsPerCentimeter(): number {
-    return image.width / appConfig.totalCM;
+    return (image.width - window.innerWidth) / appConfig.totalCM;
 }
