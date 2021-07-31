@@ -8,7 +8,8 @@
     "build:clean": "rimraf ./dist",
     "type": "tsc --noEmit",
     "webpack": "webpack",
-    "serve": "hs ./dist"
+    "serve": "hs ./dist",
+    "watch": "webpack serve"
   },
   "repository": {
     "type": "git",
