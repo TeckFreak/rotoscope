@@ -8,6 +8,7 @@ let container: HTMLSpanElement;
 let i = 0;
 let modal: HTMLDivElement;
 let modalContent: HTMLDivElement;
+let buttons: HTMLButtonElement[] = [];
 
 const socket = io("localhost:3000");
 socket.on('connect', () => {
@@ -36,6 +37,16 @@ function moveBody(distance: number) {
             i++;
         }
     }
+
+    buttons.forEach((button) => {
+        if (button.hasAttribute('isPlaying') && button.getAttribute('isPlaying') == 'true') {
+            const buttonOffset = getOffset(button);
+            if (buttonOffset.left < 0 || buttonOffset.left > window.innerWidth) {
+                button.setAttribute('isPlaying', 'false');
+                hideModal();
+            }
+        }
+    });
 }
 
 function getPixelsPerCentimeter(): number {
@@ -76,10 +87,13 @@ function initButtons(): void {
 
         // button.addEventListener('click',)
         button.onclick = () => {
+            button.setAttribute('isPlaying', 'true');
             showModal(touchPoint.file);
         }
 
         container.appendChild(button);
+
+        buttons.push(button);
     });
 }
 
