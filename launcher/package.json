@@ -1,0 +1,33 @@
+{
+  "name": "electron-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "release": "electron-packager . \"Rotoscope Launcher\" --platform=win32 --overwrite --icon=\"./icon-win32.ico\" --asar --win32metadata.CompanyName=\"Rinnegan Technologies Pvt. Ltd.\" --win32metadata.ProductName=\"Rotoscope Launcher\" --win32metadata.FileDescription=\"Rinnegan Technologies\" --appCopyright=\"Copyright © 2021 | Rinnegan Technologies | All rights reserved.\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^13.1.8",
+    "electron-packager": "^15.3.0"
+  },
+  "build": {
+    "productName": "Rotoscope Launcher",
+    "copyright": "Copyright © 2021 | Rinnegan Technologies | Rahul Vashishtha",
+    "win": {
+      "icon": "./icon.png"
+    },
+    "files": [
+      "./build/**/*",
+      "./dist/**/*",
+      "./node_modules/**/*",
+      "*.js"
+    ],
+    "directories": {
+      "buildResources": "./"
+    }
+  }
+}
