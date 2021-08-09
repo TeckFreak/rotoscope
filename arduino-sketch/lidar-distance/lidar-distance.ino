@@ -25,7 +25,7 @@ void loop() {
         }
         check = uart[0] + uart[1] + uart[2] + uart[3] + uart[4] + uart[5] + uart[6] + uart[7];
         if (uart[8] == (check & 0xff)) { //verify the received data as per protocol
-          dist = uart[2] + uart[3]; //* 256; //calculate distance value
+          dist = uart[2] + uart[3] * 256; //calculate distance value
           if(dist != lastDist) {
             Serial.println(dist); //output measure distance value of LiDAR
           }
